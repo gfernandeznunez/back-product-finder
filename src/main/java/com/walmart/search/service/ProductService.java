@@ -51,8 +51,14 @@ public class ProductService {
 
     private List<Product> calcNewPrice(List<Product> products){
         for (Product p : products) {
-            p.setPriceWithDiscount((Constant.DISCOUNT/100) * p.getPrice());
-            p.setDiscount(Constant.DISCOUNT);
+            try {
+                p.setPriceWithDiscount((int)((Constant.DISCOUNT/100) * p.getPrice()));
+                p.setDiscount(Constant.DISCOUNT);
+            } catch (Exception e){
+                p.setPriceWithDiscount(0);
+                p.setDiscount(0);
+            }
+
         }
 
         return products;

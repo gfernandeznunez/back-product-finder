@@ -1,27 +1,32 @@
 package com.walmart.search.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Builder
-@Data
+@Setter
+@Getter
 @Document(collection="products")
 public class Product {
 
     @Id
     private String _id;
-
     private int id;
     private String brand;
     private String description;
     private String image;
-    private Double price;
+    private int price;
 
     //Price with discount
-    private Double priceWithDiscount;
+    @Transient
+    private int priceWithDiscount;
 
     //% of discount
-    private Double discount ;
+    @Transient
+    private double discount ;
 }
